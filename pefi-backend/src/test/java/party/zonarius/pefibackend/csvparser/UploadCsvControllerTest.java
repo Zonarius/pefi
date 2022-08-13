@@ -1,9 +1,7 @@
 package party.zonarius.pefibackend.csvparser;
 
 import au.com.origin.snapshots.Expect;
-import au.com.origin.snapshots.junit5.SnapshotExtension;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 import party.zonarius.pefibackend.IntegrationTest;
