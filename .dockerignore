@@ -1,0 +1,5 @@
+./pefi-backend/target
+./pefi-backend/.idea
+
+./pefi-frontend/build
+./pefi-frontend/node_modules
