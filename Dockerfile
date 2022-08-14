@@ -9,10 +9,11 @@ WORKDIR /app
 
 COPY ./pefi-backend/.mvn/ .mvn
 COPY ./pefi-backend/mvnw ./pefi-backend/pom.xml ./
-RUN ./mvnw dependency:resolve
 
 COPY ./pefi-backend/src ./src
 COPY --from=jsbuild /app/build/ ./src/main/resources/static/
+
+RUN ./mvnw verify
 
 EXPOSE 8080
 CMD ["./mvnw", "spring-boot:run"]
