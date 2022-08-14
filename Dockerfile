@@ -13,7 +13,7 @@ COPY ./pefi-backend/mvnw ./pefi-backend/pom.xml ./
 COPY ./pefi-backend/src ./src
 COPY --from=jsbuild /app/build/ ./src/main/resources/static/
 
-RUN ./mvnw verify
+RUN ./mvnw package -DskipTests
 
 EXPOSE 8080
 CMD ["./mvnw", "spring-boot:run"]
