@@ -92,7 +92,10 @@ class CtrlAControllerTest {
             .body("type", equalTo("saved"))
             .body("itemsSaved", equalTo(5));
 
-        assertThat(transactionRepository.count()).isEqualTo(30);
+        List<TransactionEntity> txs = transactionRepository.findAll();
+
+        assertThat(txs).hasSize(30);
+        assertThat(txs).allSatisfy(tx -> assertThat(tx.getIban()).isEqualTo("AT320000000000000000"));
     }
 
     private void create(String input) {
