@@ -33,6 +33,7 @@ build/
 .vscode/
 
 ### Sensitive Data ###
+/src/main/resources/secret.properties
 /src/test/resources/sensitive-test-data
 __snapshots__
 

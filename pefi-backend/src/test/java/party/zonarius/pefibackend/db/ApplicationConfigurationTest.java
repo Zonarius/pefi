@@ -20,6 +20,6 @@ class ApplicationConfigurationTest {
     void applicationConfigurationCreated() {
         ApplicationEntity application = applicationRepository.getApplication();
         assertThat(application.getId()).isEqualTo(1);
-        assertThat(application.getScript()).isEmpty();
+        assertThat(application.getScript()).isNotEmpty();
     }
 }

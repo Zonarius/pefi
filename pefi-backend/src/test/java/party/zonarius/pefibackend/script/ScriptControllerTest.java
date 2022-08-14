@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 import party.zonarius.pefibackend.IntegrationTest;
+import party.zonarius.pefibackend.TestResources;
 import party.zonarius.pefibackend.TestUtil;
 import party.zonarius.pefibackend.db.entity.TransactionEntity;
 import party.zonarius.pefibackend.db.repository.TransactionRepository;
@@ -26,9 +27,9 @@ class ScriptControllerTest {
     void setUp() {
         given()
             .webAppContextSetup(ctx)
-            .multiPart("file", TestUtil.getCsvExample())
+            .multiPart("file", TestResources.Csv.exampleAsFile())
             .when()
-            .post("/uploadCsv")
+            .post("/api/uploadCsv")
             .then()
             .statusCode(200);
     }
@@ -48,10 +49,8 @@ class ScriptControllerTest {
             .contentType("application/json")
             .body(ScriptUploadRequest.builder().script(TestUtil.getScript(scriptName)).build())
             .when()
-            .post("/script")
+            .post("/api/script")
             .then()
-            .log()
-            .all()
             .statusCode(200);
     }
 }

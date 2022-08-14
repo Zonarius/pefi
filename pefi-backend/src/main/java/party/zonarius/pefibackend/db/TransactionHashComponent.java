@@ -39,4 +39,9 @@ public class TransactionHashComponent {
             throw new RuntimeException(e);
         }
     }
+
+    public TransactionEntity setHash(TransactionEntity tx) {
+        tx.setHash(hash(tx));
+        return tx;
+    }
 }

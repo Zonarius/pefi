@@ -1,9 +1,10 @@
 package party.zonarius.pefibackend.ctlra;
 
+import lombok.RequiredArgsConstructor;
 import org.jparsec.Parser;
 import org.jparsec.Parsers;
-import org.jparsec.Terminals;
 import org.springframework.stereotype.Component;
+import party.zonarius.pefibackend.PefiBackendConfiguration;
 import party.zonarius.pefibackend.db.entity.TransactionEntity;
 
 import java.time.LocalDate;
@@ -12,12 +13,14 @@ import java.util.List;
 import static org.jparsec.Scanners.*;
 
 @Component
+@RequiredArgsConstructor
 public class CtrlAParser {
-    private final Parser<List<TransactionEntity>> parser;
+    private final PefiBackendConfiguration configuration;
+    private final Parser<List<TransactionEntity>> parser = createParser();
 
-    public CtrlAParser() {
+    private Parser<List<TransactionEntity>> createParser() {
         var pre = ANY_CHAR.until(string("Beleg")).next(string("Beleg")).label("Preamble");
-        parser = pre.next(tx().many1().label("txlist"))
+        return pre.next(tx().many1().label("txlist"))
             .followedBy(ANY_CHAR.many().label("ending"));
     }
 
@@ -96,11 +99,8 @@ public class CtrlAParser {
     }
 
     public List<TransactionEntity> parse(String input) {
-        try {
-            parser.parseTree(input);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return parser.parse(input);
+        List<TransactionEntity> parsed = parser.parse(input);
+        parsed.forEach(tx -> tx.setIban(configuration.getDefaultIban()));
+        return parsed;
     }
 }

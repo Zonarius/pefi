@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import party.zonarius.pefibackend.db.entity.TransactionEntity;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TransactionRepository extends JpaRepository<TransactionEntity, String> {
 
