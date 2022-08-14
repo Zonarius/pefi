@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 public class TransactionHashGenerator implements IdentifierGenerator {
     private final TransactionHashComponent txHasher;
 
-    public TransactionHashGenerator() throws NoSuchAlgorithmException {
+    public TransactionHashGenerator() {
         this.txHasher = new TransactionHashComponent();
     }
 

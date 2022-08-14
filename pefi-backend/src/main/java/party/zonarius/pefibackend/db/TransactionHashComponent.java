@@ -40,8 +40,7 @@ public class TransactionHashComponent {
         }
     }
 
-    public TransactionEntity setHash(TransactionEntity tx) {
+    public void setHash(TransactionEntity tx) {
         tx.setHash(hash(tx));
-        return tx;
     }
 }

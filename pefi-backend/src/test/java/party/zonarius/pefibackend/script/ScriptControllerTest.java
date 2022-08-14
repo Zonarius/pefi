@@ -39,11 +39,11 @@ class ScriptControllerTest {
         uploadScript("constTag.js");
 
         List<TransactionEntity> txs = transactionRepository.findAll();
-        assertThat(txs).extracting(TransactionEntity::getTag).allSatisfy(tag -> {
-            assertThat(tag).isEqualTo("essen.geschäft.billa");
-        });
+        assertThat(txs).extracting(TransactionEntity::getTag).allSatisfy(tag ->
+            assertThat(tag).isEqualTo("essen.geschäft.billa"));
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void uploadScript(String scriptName) {
         given().webAppContextSetup(ctx)
             .contentType("application/json")

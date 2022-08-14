@@ -110,6 +110,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
+				<!--suppress MavenModelInspection -->
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<excludes>
@@ -206,8 +207,11 @@
 			<build>
 				<plugins>
 					<plugin>
+						<!--suppress MavenModelInspection -->
 						<groupId>org.graalvm.buildtools</groupId>
+						<!--suppress MavenModelInspection -->
 						<artifactId>native-maven-plugin</artifactId>
+						<!--suppress MavenModelInspection -->
 						<version>${native-buildtools.version}</version>
 						<extensions>true</extensions>
 						<executions>
